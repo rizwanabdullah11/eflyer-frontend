@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #333;
+  color: white;
+  width: 60%;
+  height: 60px;
+  margin-left: 20%;
+  border-bottom-left-radius: 200px; 
+  border-bottom-right-radius: 200px; 
+}
+
+.top-nav ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 10px 0;
+}
+
+.top-nav li {
+  margin: 0 15px;
+}
+
+.top-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+}
