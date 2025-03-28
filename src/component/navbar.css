@@ -1,26 +1,31 @@
 .navbar {
-  background-color: #333;
-  color: white;
-  width: 60%;
-  height: 60px;
-  margin-left: 20%;
-  border-bottom-left-radius: 200px; 
-  border-bottom-right-radius: 200px; 
+  width: 100%;
+  background-color: #222;
+}
+
+.top-nav {
+  padding: 10px 20px;
 }
 
 .top-nav ul {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   list-style-type: none;
-  padding: 10px 0;
+  margin: 0;
+  padding: 0;
 }
 
 .top-nav li {
-  margin: 0 15px;
+  margin: 5px 10px;
 }
 
 .top-nav a {
   color: white;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
 }

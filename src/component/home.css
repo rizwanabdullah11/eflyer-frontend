@@ -26,13 +26,23 @@
   padding: 30px 50px; 
   z-index: 2;
   margin-left: 20px;
+  flex-wrap: wrap;
 }
-
 
 .menu-toggle {
   padding: 12px 20px;
   margin-right: 10px;
   font-size: 18px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: white;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .category-select {
@@ -55,6 +65,7 @@
   padding: 10px;
   font-size: 18px;
   color: black;
+  width: 100%;
 }
 
 .search-bar button {
@@ -87,16 +98,19 @@
   margin-left: 15px;
   color: white;
   font-size: 18px;
-  
 }
 
 .hero-content-wrapper {
   position: absolute;
   width: 100%;
+  height: 50%;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  bottom: 10%;
+  margin-top: 50px;
+
 }
 
 .hero-content {
@@ -133,6 +147,8 @@
 .nav-arrow.right{
   margin-right: 30px;
 }
+
+/* Side Menu Styles - Enhanced for mobile */
 .side-menu {
   height: 100%;
   width: 0;
@@ -143,11 +159,11 @@
   overflow-x: hidden;
   transition: 0.3s;
   padding-top: 60px;
-  z-index: 1;
+  z-index: 10;
 }
 
 .side-menu.open {
-  width: 250px;
+  width: 280px;
 }
 
 .side-menu .close-btn {
@@ -167,20 +183,35 @@
 }
 
 .side-menu ul li {
-  padding: 8px 16px;
+  padding: 12px 20px;
   text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+.side-menu ul li:first-child {
+  border-top: 1px solid #333;
 }
 
 .side-menu ul li a {
   color: white;
   display: block;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 18px;
+  transition: color 0.3s;
 }
 
 .side-menu ul li a:hover {
-  background-color: #575757;
+  color: #f26522;
 }
+
+.mobile-nav-divider {
+  height: 2px;
+  background-color: #f26522;
+  margin: 10px 0;
+  padding: 0 !important;
+  border: none !important;
+}
+
 .overlay {
   height: 100%;
   width: 100%;
@@ -188,6 +219,125 @@
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 0;
+  z-index: 5;
   transition: 0.3s;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .main-nav {
+    padding: 20px;
+    margin-left: 0;
+    justify-content: center;
+  }
+  
+  .search-bar {
+    margin: 10px 0;
+    max-width: 100%;
+    order: 3;
+    width: 100%;
+  }
+  
+  .cart-icons {
+    padding: 10px;
+  }
+  
+  .hero-content h1 {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .logo {
+    height: 80px;
+    font-size: 32px;
+    padding-top: 20px;
+  }
+  
+  .main-nav {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .menu-toggle {
+    align-self: flex-start;
+    margin-bottom: 10px;
+  }
+  
+  .category-select, .language-select {
+    width: 100%;
+    margin: 5px 0;
+  }
+  
+  .cart-icons {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 0;
+  }
+  
+  .hero-content-wrapper {
+    flex-direction: column;
+    position: relative;
+    margin-top: 20px;
+  }
+  
+  .nav-arrow {
+    margin: 10px 0;
+  }
+  
+  .nav-arrow.left, .nav-arrow.right {
+    margin: 10px 0;
+  }
+  
+  .hero-content h1 {
+    font-size: 28px;
+  }
+  
+  /* Enhanced side menu for mobile */
+  .side-menu.open {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 28px;
+    height: 60px;
+  }
+  
+  .menu-toggle, .category-select, .language-select {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+  
+  .search-bar input {
+    font-size: 16px;
+  }
+  
+  .cart-icons span {
+    font-size: 16px;
+  }
+  
+  .hero-content h1 {
+    font-size: 24px;
+  }
+  
+  .cta {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+  
+  .side-menu.open {
+    width: 85%;
+  }
+  
+  .side-menu ul li a {
+    font-size: 16px;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './signin.css';
-import illustration from '../assets/background.png'; // Replace with your image path
+import illustration from '../assets/background.png';
 
 const Signin = () => {
   const [formData, setFormData] = useState({
@@ -34,6 +34,7 @@ const Signin = () => {
                 placeholder="Enter your email address"
                 value={formData.email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className="form-group">
@@ -44,12 +45,13 @@ const Signin = () => {
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleChange}
+                required
               />
               <Link to="/forgot-password" className="forgot-password">Forgot Password?</Link>
             </div>
             <button type="submit" className="login-button">Login</button>
           </form>
-          <p>
+          <p className="signup-link">
             Want to be a seller? <Link to="/signup">Signup</Link>
           </p>
         </div>

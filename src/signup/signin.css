@@ -1,25 +1,28 @@
 .signin-container {
   display: flex;
-  height: 60vh;
-  width: 50%;
-  margin: 0 auto;
+  height: auto;
+  width: 90%;
+  max-width: 1000px;
+  margin: 40px auto;
   background-color: #fff;
   box-shadow: 0 4px 4px 4px #EDC22A;
   border-radius: 10px;
-  margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
   align-items: center;
   border-radius: 0 8px 8px 0;
-  object-fit: contain;
-  margin-top: 20x;
 }
-.image-section img{
-  height: 60vh;
-  width: 50vh;
-  border-radius: 10px;
-  align-items: center;
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 10px 10px 0;
 }
 
 .form-section {
@@ -29,11 +32,12 @@
   align-items: center;
   background-color: white;
   border-radius: 8px 0 0 8px;
+  padding: 20px;
 }
 
 .inner-box {
-  width: 95%;
-  padding: 40px;
+  width: 100%;
+  padding: 30px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #f9f9f9;
@@ -49,6 +53,7 @@ h2 {
 p {
   color: #555;
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -59,13 +64,21 @@ p {
   display: block;
   margin-bottom: 5px;
   color: #555;
+  font-weight: 500;
 }
 
 .form-group input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: #EDC22A;
+  outline: none;
 }
 
 .forgot-password {
@@ -73,17 +86,26 @@ p {
   margin-top: 5px;
   text-align: right;
   color: #EDC22A;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
 }
 
 .login-button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #EDC22A;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background-color 0.3s;
 }
 
 .login-button:hover {
@@ -93,9 +115,93 @@ p {
 .signup-link {
   margin-top: 20px;
   text-align: center;
+  font-size: 14px;
 }
 
 .signup-link a {
   color: #EDC22A;
   text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .signin-container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .signin-container {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+  
+  .image-section {
+    border-radius: 10px 10px 0 0;
+    height: 200px;
+  }
+  
+  .image-section img {
+    border-radius: 10px 10px 0 0;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .form-section {
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .inner-box {
+    padding: 20px;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-container {
+    width: 100%;
+    margin: 20px auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .image-section {
+    height: 150px;
+    border-radius: 0;
+  }
+  
+  .image-section img {
+    border-radius: 0;
+  }
+  
+  .form-section {
+    border-radius: 0;
+    padding: 15px;
+  }
+  
+  .inner-box {
+    padding: 15px;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  .form-group input {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .login-button {
+    padding: 10px;
+    font-size: 14px;
+  }
 }

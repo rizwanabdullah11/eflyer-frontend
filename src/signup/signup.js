@@ -1,93 +1,95 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './signup.css';
-import logo from '../assets/background.png'; 
+import illustration from '../assets/background.png';
 
-const SignUpForm = () => {
-    const [formData, setFormData] = useState({
-        fullName: '',
-        email: '',
-        password: ''
-    });
+const Signup = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords don't match!");
+      return;
+    }
+    console.log("Form Data:", formData);
+  };
 
-        try {
-            const response = await fetch('http://localhost:5000/signup/signup', {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData), 
-            });
-
-            const data = await response.text();
-            if (response.ok) {
-                console.log("User registered:", data);
-            } else {
-                console.error("Registration failed:", data);
-            }
-        } catch (err) {
-            console.error("Error:", err);
-        }
-    };
-
-    return (
-        <div className="signup-container">
-            <div className="form-section1">
-                <div className="inner-box1">
-                    <h2>Create New Account <span role="img" aria-label="wave">👋</span></h2>
-                    <p>Please enter details to create a new account</p>
-                    <form onSubmit={handleSubmit}> {/* Form submission triggers handleSubmit */}
-                        <div className="form-group">
-                            <label>Full Name</label>
-                            <input
-                                type="text"
-                                name="fullName"
-                                placeholder="Enter your full name"
-                                value={formData.fullName}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Email Address</label>
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Enter your email address"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input
-                                type="password"
-                                name="password"
-                                placeholder="Enter your password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-                        <button type="submit" className="submit-button">Sign Up</button>
-                    </form>
-                    <p>Already have an account? <Link to="/signin">Sign in</Link></p>
-                </div>
+  return (
+    <div className="signup-container">
+      <div className="form-section1">
+        <div className="inner-box1">
+          <h2>Create Seller Account</h2>
+          <p>Please fill in the details to create your account</p>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label>Full Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your full name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
-            <div className="image-section1">
-                <img src={logo} alt="Model" />
+            <div className="form-group">
+              <label>Email Address</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Create a password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                minLength="6"
+              />
+            </div>
+            <div className="form-group">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                minLength="6"
+              />
+            </div>
+            <button type="submit" className="submit-button">Create Account</button>
+          </form>
+          <p className="signin-link">
+            Already have an account? <Link to="/signin">Login</Link>
+          </p>
         </div>
-    );
+      </div>
+      <div className="image-section1">
+        <img src={illustration} alt="Illustration" />
+      </div>
+    </div>
+  );
 };
 
-export default SignUpForm;
+export default Signup;

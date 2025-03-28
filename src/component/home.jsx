@@ -1,9 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './home.css';
 
 const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+      if (window.innerWidth > 768) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -55,7 +71,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Side Menu */}
+      {/* Side Menu - Now includes top navigation links for mobile */}
       <div className={`side-menu ${isMenuOpen ? 'open' : ''}`}>
         <button 
           className="close-btn" 
@@ -69,8 +85,23 @@ const Hero = () => {
           <li><Link to="/fashion" onClick={toggleMenu}>Fashion</Link></li>
           <li><Link to="/electronic" onClick={toggleMenu}>Electronic</Link></li>
           <li><Link to="/jewellery" onClick={toggleMenu}>Jewellery</Link></li>
+          
+          {/* Mobile-only top navigation links */}
+          {isMobile && (
+            <>
+              <li className="mobile-nav-divider"></li>
+              <li><a href="#" onClick={toggleMenu}>Best Sellers</a></li>
+              <li><a href="#" onClick={toggleMenu}>Gift Ideas</a></li>
+              <li><a href="#" onClick={toggleMenu}>New Releases</a></li>
+              <li><a href="#" onClick={toggleMenu}>Today's Deals</a></li>
+              <li><a href="#" onClick={toggleMenu}>Customer Service</a></li>
+            </>
+          )}
         </ul>
       </div>
+
+      {/* Overlay when menu is open */}
+      {isMenuOpen && <div className="overlay" onClick={toggleMenu}></div>}
 
       {/* Hero Content */}
       <div className="hero-content-wrapper">
